@@ -1,0 +1,14 @@
+---
+# tasks file for external-port-connectivity-validator-server
+- name: Client validator with proxy
+  debug:
+    msg: 'Source Server: {{ local_address }}'
+
+- name: Shutdown validation server {{ target_server }}:{{ check_port }} with proxy
+  uri:
+    url: 'http://{{ target_server }}:{{ check_port }}/done'
+  register: done
+  failed_when: not done.failed
+  environment:
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ https_proxy }}"

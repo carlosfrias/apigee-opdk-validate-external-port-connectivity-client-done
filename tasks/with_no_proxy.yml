@@ -1,0 +1,11 @@
+---
+# tasks file for external-port-connectivity-validator-server
+- name: Client validator
+  debug:
+    msg: 'Client validator: {{ local_address }}'
+
+- name: Shutdown validation server {{ target_server }}:{{ check_port }}
+  uri:
+    url: 'http://{{ target_server }}:{{ check_port }}/done'
+  register: done
+  failed_when: not done.failed
