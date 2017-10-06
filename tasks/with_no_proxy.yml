@@ -2,7 +2,7 @@
 # tasks file for external-port-connectivity-validator-server
 - name: Client validator
   debug:
-    msg: 'Client validator: {{ local_address }}'
+    msg: 'Client validator: {{ private_address }}'
 
 - name: Shutdown validation server {{ target_server }}:{{ check_port }}
   uri:
